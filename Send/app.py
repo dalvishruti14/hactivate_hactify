@@ -1,38 +1,3 @@
-# from flask import Flask, render_template, request, jsonify
-# import google.generativeai as genai
-# from dotenv import load_dotenv
-# import os
-
-# # Load environment variables from .env file
-# load_dotenv()
-
-# app = Flask(__name__)
-
-# # Fetch the API key from environment variables
-# GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
-
-# # Check if the API key is loaded properly
-# if GEMINI_API_KEY is None:
-#     raise ValueError("No GEMINI_API_KEY found in environment variables")
-
-# genai.configure(api_key=GEMINI_API_KEY)
-
-# @app.route('/')
-# def home():
-#     return render_template('index.html')
-
-# @app.route('/generate', methods=['POST'])
-# def generate_text():
-#     data = request.get_json()
-#     prompt = f"Generate a text on the topic '{data['topic']}' for {data['name']}, a {data['age']}-year-old {data['gender']} interested in {data['interest']}. The text should have an unfamiliar tone, include grammar errors, mild threats or a sense of urgency, and make unusual requests like seeing something and saying something in response. The text should be at least {data['minWords']} words."
-#     model = genai.GenerativeModel('gemini-pro')
-#     response = model.generate_content(prompt)
-#     return jsonify({'text': response.text})
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
-
-
 from flask import Flask, render_template, request, jsonify
 import google.generativeai as genai
 from dotenv import load_dotenv
@@ -115,4 +80,4 @@ def generate_text():
     return jsonify({'text': gen_text})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
