@@ -4,27 +4,197 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="emailfinder.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0D1B2A; /* Dark Blue */
+            color: #E0E1DD; /* Light Grey */
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            background-color: #162447; /* Darker Blue */
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a {
+            color: #E0E1DD;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar ul li a i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #1B263B; /* Dark Blue */
+        }
+
+        .content {
+            margin-left: 300px; /* Increase gap between sidebar and content */
+            padding: 20px;
+            transition: margin-left 0.3s;
+        }
+
+        .navbar {
+            background-color: #1B98E0; /* Light Blue */
+            padding: 10px;
+            text-align: center;
+        }
+
+        .navbar .btn {
+            background-color: #5BC0EB; /* Lighter Blue */
+            color: #E0E1DD;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .navbar .btn:hover {
+            background-color: #1B98E0; /* Light Blue */
+            transform: scale(1.05);
+        }
+
+        .btn-start {
+            background-color: #1B98E0;
+            color: #E0E1DD;
+            border: none;
+            padding: 15px 30px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-start:hover {
+            background-color: #5BC0EB;
+            transform: scale(1.05);
+        }
+
+        .articles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .article {
+            background: #1B263B; /* Dark Blue */
+            color: #E0E1DD; /* Light Grey */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: calc(33.33% - 20px); /* Adjust based on the number of articles per row */
+        }
+
+        .article h3 {
+            margin-top: 0;
+        }
+
+        .article p {
+            line-height: 1.6;
+        }
+
+        .article a {
+            color: #5BC0EB; /* Lighter Blue */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .article a:hover {
+            color: #1B98E0; /* Light Blue */
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+
+            .navbar {
+                flex-direction: column;
+            }
+
+            .navbar .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .articles {
+                margin-top: 20px;
+            }
+
+            .article {
+                width: 100%; /* Full width on smaller screens */
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="sidebar">
         <ul>
             <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="#" onclick="loadPage('dashboard.html')"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-            <li><a href="#" onclick="loadPage('simulator.html')"><i class="fas fa-cogs"></i> Simulator</a></li>
+            <li><a href="dashboard.html" onclick="loadPage('dashboard.html')"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="simulator.html" onclick="loadPage('simulator.html')"><i class="fas fa-cogs"></i> Simulator</a></li>
             <li><a href="http://127.0.0.1:5000/" onclick="loadPage('emailfinder.html')"><i class="fas fa-envelope"></i> Email Finder</a></li>
-            <li><a href="#" onclick="getGeolocationAndRedirect()"><i class="fas fa-history"></i> Your Activity</a></li>
-            <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>    
+            <li><a href="your_activity.html" onclick="getGeolocationAndRedirect()"><i class="fas fa-history"></i> Your Activity</a></li>
+            <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
             <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>
     <div class="content" id="content">
         <h1>Welcome to the Email Phishing Simulation</h1>
         <p>This simulation helps you understand phishing attacks and how to prevent them.</p>
-        <button onclick="window.location.href = 'http://127.0.0.1:5000/'">Start Email Finder</button>
-
+        <button class="btn-start" onclick="window.location.href = 'http://127.0.0.1:5000/'">Start Email Finder</button>
+        <div class="articles">
+            <div class="article">
+                <h3>What is Phishing?</h3>
+                <p>Phishing is a type of online scam where criminals impersonate legitimate organizations via email, text message, advertisement or other means in order to steal sensitive information.</p>
+                <a href="https://www.forbes.com/sites/technology/article/what-is-phishing/" target="_blank">Read more</a>
+            </div>
+            <div class="article">
+                <h3>Phishing Attacks Are Increasing and Getting More Sophisticated</h3>
+                <p>Phishing attacks are becoming more frequent and sophisticated, posing a significant threat to individuals and businesses alike.</p>
+                <a href="https://www.cnbc.com/2023/01/07/phishing-attacks-are-increasing-and-getting-more-sophisticated.html" target="_blank">Read more</a>
+            </div>
+            <div class="article">
+                <h3>How to Spot Phishing</h3>
+                <p>Learn how to recognize phishing attacks and protect yourself from becoming a victim of these deceptive schemes.</p>
+                <a href="https://cofense.com/knowledge-center/how-to-spot-phishing/" target="_blank">Read more</a>
+            </div>
+        </div>
     </div>
-    <script src="script.js"></script>
+    <script src="emailfinder.js"></script>
 </body>
 </html>

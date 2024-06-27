@@ -74,3 +74,15 @@ bill.gates@microsoft
 bill@microsoft
 g@microsoft
 gates.bill@microsoft
+virat.kohli@google
+kohli@google
+kohli.virat@google
+k@google
+v@google
+virat@google
+kohlivirat@google
+viratkohli@google
+Shifa@Hacktify.in
+Shifa@Hakctify.org
+shifa@Hakctify.org
+info@example.com
