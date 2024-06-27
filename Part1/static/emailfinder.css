@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0D1B2A; /* Dark Blue */
+    color: #E0E1DD; /* Light Grey */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #1B263B; /* Slightly lighter dark blue */
+    border-radius: 10px;
+}
+
+h1 {
+    color: #F0F4F8; /* Lighter color for the main title */
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #A9BCD0; /* Slightly muted light color for labels */
+}
+
+textarea, input {
+    width: calc(100% - 22px); /* Adjust width to account for padding and border */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #1B98E0; /* Add a border for better visibility */
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #112240; /* Darker input background */
+    color: #E0E1DD; /* Light text color */
+}
+
+button {
+    display: block;
+    width: calc(100% - 22px); /* Full-width button with padding accounted */
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1B98E0; /* Light Blue */
+    color: #E0E1DD;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #5BC0EB; /* Lighter Blue */
+    transform: scale(1.05);
+}
+
+pre {
+    text-align: left;
+    background: #112240; /* Darker background for preformatted text */
+    padding: 10px;
+    border-radius: 5px;
+    color: #E0E1DD; /* Light text color */
+    overflow: auto;
+}
+
+#charts {
+    margin-top: 20px;
+}
+/* Adjust pie chart size */
+canvas#pieChart {
+    max-width: 60%; /* Ensure it fits within its container */
+    height: auto; /* Allow the height to adjust according to width */
+}
+
+/* Adjust font color for fetched emails */
+#emails {
+    color: #eceaea; /* Darken the color for better visibility */
+}

@@ -1,0 +1,55 @@
+body {
+    background-color: #000;
+    color: #FFA500;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+.robot-image {
+    width: 150px;
+    height: auto;
+}
+
+.input-section {
+    margin-top: 20px;
+}
+
+.input-section label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #FFA500; /* Change label text color to orange */
+}
+
+.input-section input,
+.input-section select {
+    padding: 5px;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #FFA500;
+    border-radius: 5px;
+    color: #FFF; /* Make input text white */
+    background-color: #333;
+}
+
+.input-section button {
+    padding: 10px 20px;
+    color: #000;
+    background-color: #FFA500;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.output-section {
+    margin-top: 20px;
+    color: #FFF; /* Make output text white */
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='emailfinder.css') }}">
+    <title>Email Finder</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Email Finder</h1>
+        <div id="input-section">
+            <label for="fetch-type">Fetch Type:</label>
+            <select id="fetch-type">
+                <option value="single">Single</option>
+                <option value="bulk">Bulk</option>
+            </select>
+            <div id="single-inputs" style="display: none;">
+                <textarea id="names" placeholder="Enter names, one per line"></textarea>
+                <input type="text" id="domain" placeholder="Enter domain">
+                <button id="fetch-emails">Fetch Emails</button>
+            </div>
+            <div id="bulk-inputs" style="display: none;">
+                <textarea id="bulk-data" placeholder='Enter bulk data in JSON format (e.g., [{"domain": "example.com", "names": ["John Doe"]}, {"domain": "example2.com", "names": ["Jane Smith"]}]'></textarea>
+                <button id="fetch-emails-bulk">Fetch Emails in Bulk</button>
+            </div>
+        </div>
+        <textarea id="urls" placeholder="Enter URLs to scrape, one per line"></textarea>
+        <button id="scrape-emails">Scrape Emails</button>
+        <button id="check-emails">Check Emails</button>
+
+        <div id="results">
+            <h2>Fetched Emails</h2>
+            <pre id="emails"></pre>
+
+            <h2>Live Emails</h2>
+            <pre id="live-emails"></pre>
+
+            <h2>Dead Emails</h2>
+            <pre id="dead-emails"></pre>
+        </div>
+
+        <div id="charts">
+            <h2>Charts</h2>
+            <canvas id="barChart"></canvas>
+            <canvas id="pieChart"></canvas>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='emailfinder.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,300 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0D1B2A; /* Dark Blue */
+    color: #E0E1DD; /* Light Grey */
+}
+
+.login-container {
+    width: 300px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #1B263B; /* Dark Blue */
+    border-radius: 10px;
+    text-align: center;
+}
+
+input[type="text"], input[type="password"] {
+    width: calc(100% - 20px); /* Adjust width to account for padding */
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #1B98E0; /* Light Blue */
+    border: none;
+    border-radius: 5px;
+    color: #E0E1DD;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #A9BCD0; /* Lighter Blue */
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    background-color: #162447; /* Darker Blue */
+    padding: 20px;
+    transition: all 0.3s;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.sidebar ul li a {
+    color: #E0E1DD;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.sidebar ul li:hover {
+    background-color: #1B263B; /* Dark Blue */
+}
+
+.content {
+    margin-left: 270px;
+    padding: 20px;
+}
+
+.navbar {
+    background-color: #1B98E0; /* Light Blue */
+    padding: 10px;
+    text-align: center;
+}
+
+.navbar .btn {
+    background-color: #5BC0EB; /* Lighter Blue */
+    color: #E0E1DD;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.navbar .btn:hover {
+    background-color: #1B98E0; /* Light Blue */
+    transform: scale(1.05);
+}
+
+.form-container {
+    background-color: #1B263B; /* Dark Blue */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form-container input[type="text"], .form-container select {
+    width: calc(100% - 20px); /* Adjust width to account for padding */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
+
+.form-container button {
+    padding: 10px 20px;
+    background-color: #1B98E0; /* Light Blue */
+    border: none;
+    border-radius: 5px;
+    color: #E0E1DD;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.form-container button:hover {
+    background-color: #5BC0EB; /* Lighter Blue */
+    transform: scale(1.05);
+}
+
+.upload-btn {
+    background-color: #5BC0EB; /* Lighter Blue */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #E0E1DD;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 20px;
+}
+
+.upload-btn:hover {
+    background-color: #1B98E0; /* Light Blue */
+    transform: scale(1.05);
+}
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    background-color: #162447; /* Darker Blue */
+    padding: 20px;
+    transition: all 0.3s;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.sidebar ul li a {
+    color: #E0E1DD;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.sidebar ul li:hover {
+    background-color: #1B263B; /* Dark Blue */
+}
+
+.content {
+    margin-left: 270px;
+    padding: 20px;
+}
+
+.navbar {
+    background-color: #1B98E0; /* Light Blue */
+    padding: 10px;
+    text-align: center;
+}
+
+.navbar .btn {
+    background-color: #5BC0EB; /* Lighter Blue */
+    color: #E0E1DD;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.navbar .btn:hover {
+    background-color: #1B98E0; /* Light Blue */
+    transform: scale(1.05);
+}
+
+.form-container {
+    background-color: #1B263B; /* Dark Blue */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form-container input[type="text"], .form-container select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.form-container button {
+    padding: 10px 20px;
+    background-color: #1B98E0; /* Light Blue */
+    border: none;
+    border-radius: 5px;
+    color: #E0E1DD;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.form-container button:hover {
+    background-color: #5BC0EB; /* Lighter Blue */
+    transform: scale(1.05);
+}
+
+.upload-btn {
+    background-color: #5BC0EB; /* Lighter Blue */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #E0E1DD;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 20px;
+}
+
+.upload-btn:hover {
+    background-color: #1B98E0; /* Light Blue */
+    transform: scale(1.05);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    .navbar {
+        flex-direction: column;
+    }
+
+    .navbar .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

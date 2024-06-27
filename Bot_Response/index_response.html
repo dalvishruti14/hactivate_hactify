@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Response Bot</title>
+    <link rel="stylesheet" href="styles_response.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Message Response Bot</h1>
+        <div class="message-section">
+            <label for="message">Received Message:</label>
+            <textarea id="message" rows="4" cols="50"></textarea>
+            <button onclick="getResponse()">Get Response</button>
+        </div>
+        <div class="response-section">
+            <label for="response">Bot Response:</label>
+            <textarea id="response" rows="4" cols="50" readonly></textarea>
+        </div>
+    </div>
+    <script src="script_response.js"></script>
+</body>
+</html>
