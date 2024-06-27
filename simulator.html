@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulator</title>
+    <link rel="stylesheet" href="emailfinder.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0D1B2A; /* Dark Blue */
+            color: #E0E1DD; /* Light Grey */
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            background-color: #162447; /* Darker Blue */
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a {
+            color: #E0E1DD;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar ul li a i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #1B263B; /* Dark Blue */
+        }
+
+        .content {
+            margin-left: 280px; /* Increase gap between sidebar and content */
+            padding: 20px;
+            transition: margin-left 0.3s;
+        }
+
+        .two-columns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+            background: #1B263B; /* Dark Blue */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .column h2 {
+            margin-top: 0;
+        }
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 200px;
+        }
+
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+
+            .two-columns {
+                flex-direction: column;
+            }
+
+            .iframe-container {
+                padding-bottom: 75%; /* Adjust aspect ratio for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="simulator.html"><i class="fas fa-cogs"></i> Simulator</a></li>
+            <li><a href="http://127.0.0.1:5000/"><i class="fas fa-envelope"></i> Email Finder</a></li>
+            <li><a href="your_activity.html"><i class="fas fa-history"></i> Your Activity</a></li>
+            <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <h1>Simulator</h1>
+        <div class="two-columns">
+            <div class="column">
+                <h2>Send</h2>
+                <div class="iframe-container">
+                    <iframe src="http://127.0.0.1:5000"></iframe>
+                </div>
+            </div>
+            <div class="column">
+                <h2>Receive</h2>
+                <div class="iframe-container">
+                    <iframe src="http://localhost:8501"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
