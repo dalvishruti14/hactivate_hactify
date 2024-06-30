@@ -3,7 +3,7 @@
 # import re
 # import urllib.request
 # import os
-# import json
+# import subprocess
 
 # app = Flask(__name__, static_url_path='/static')
 # scout = Scout()
@@ -54,8 +54,8 @@
 #             for email in emails:
 #                 scraped_emails.add(email)
 
-#     # Write scraped emails to a file
-#     with open('scraped_emails.txt', 'w') as file:
+#     # Append scraped emails to the existing file
+#     with open('scraped_emails.txt', 'a') as file:
 #         for email in scraped_emails:
 #             file.write(email + '\n')
 
@@ -71,11 +71,18 @@
 
 #     if fetch_type == 'single':
 #         emails = scout.find_valid_emails(domain, names)
+#         with open('scraped_emails.txt', 'a') as file:
+#             for email in emails:
+#                 file.write(email + '\n')
 #         return jsonify({"emails": emails})
 
 #     elif fetch_type == 'bulk':
 #         email_data = data.get('email_data')
 #         valid_emails = scout.find_valid_emails_bulk(email_data)
+#         with open('scraped_emails.txt', 'a') as file:
+#             for entry in valid_emails:
+#                 for email in entry['valid_emails']:
+#                     file.write(email + '\n')
 #         return jsonify({"valid_emails": valid_emails})
 
 #     else:
@@ -84,7 +91,12 @@
 # # Route to check live emails
 # @app.route('/check_emails', methods=['POST'])
 # def check_emails():
-#     os.system("python3 mail.py")
+#     # Run mail.py as a subprocess and wait for it to finish
+#     process = subprocess.run(['python', 'mail.py'], check=True)
+    
+#     # Ensure the process ran without errors
+#     if process.returncode != 0:
+#         return jsonify({"error": "Failed to run email checking process"}), 500
 
 #     with open('live.txt', 'r') as f:
 #         live_emails = f.readlines()
@@ -106,6 +118,8 @@ from mailscout.scout import Scout
 import re
 import urllib.request
 import os
+import subprocess
+from data import fetch_domain_info  # Import the function from data.py
 
 app = Flask(__name__, static_url_path='/static')
 scout = Scout()
@@ -193,7 +207,12 @@ def fetch_emails():
 # Route to check live emails
 @app.route('/check_emails', methods=['POST'])
 def check_emails():
-    os.system("python3 mail.py")
+    # Run mail.py as a subprocess and wait for it to finish
+    process = subprocess.run(['python', 'mail.py'], check=True)
+    
+    # Ensure the process ran without errors
+    if process.returncode != 0:
+        return jsonify({"error": "Failed to run email checking process"}), 500
 
     with open('live.txt', 'r') as f:
         live_emails = f.readlines()
@@ -206,6 +225,26 @@ def check_emails():
     dead_emails = [email for email in all_emails if email not in live_emails]
 
     return jsonify(live_emails=live_emails, dead_emails=dead_emails)
+
+# Route to fetch domain information using data.py
+@app.route('/fetch_domain_info', methods=['POST'])
+def fetch_domain_information():
+    data = request.json
+    domain = data.get('domain')
+    api_key = data.get('api_key')
+
+    if not domain:
+        return jsonify({"error": "Domain not provided"}), 400
+
+    if not api_key:
+        return jsonify({"error": "API key not provided"}), 400
+
+    domain_info = fetch_domain_info(domain, api_key)
+
+    if domain_info:
+        return jsonify({"domain_info": domain_info})
+    else:
+        return jsonify({"error": "Failed to fetch domain information"}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
