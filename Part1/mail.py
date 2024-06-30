@@ -39,7 +39,7 @@ def main():
     dead_count = 0
     live_emails = []
 
-    with open('emails.txt', 'r') as file:
+    with open('scraped_emails.txt', 'r') as file:
         emails = file.readlines()
 
     for email in emails:
