@@ -2,26 +2,9 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #0D1B2A; /* Dark Blue */
-    color: #E0E1DD; /* Light Grey */
-}
-
-.login-container {
-    width: 300px;
-    margin: 100px auto;
-    padding: 20px;
-    background-color: #1B263B; /* Dark Blue */
-    border-radius: 10px;
-    text-align: center;
-}
-
-input[type="text"], input[type="password"] {
-    width: calc(100% - 20px); /* Adjust width to account for padding */
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    background: linear-gradient(to right, #190029, #014886a8);
+    background-color: #0D1B2A;
+    color: #E0E1DD; 
 }
 
 button {

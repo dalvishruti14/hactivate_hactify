@@ -16,12 +16,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh; /* Ensure the page takes up at least the full viewport height */
         }
         .content {
             width: 90%;
             max-width: 1000px;
-            margin: 20px auto;
+            margin: 20px;
             padding: 20px;
             background-color: #2e2e2e;
             border-radius: 8px;
@@ -36,7 +36,7 @@
             text-align: center;
         }
         .link-section {
-            margin-bottom: 20px;
+            margin-top: 20px;
             text-align: center;
         }
         .link-section a {
@@ -54,7 +54,7 @@
         }
         iframe#mapIframe {
             width: 100%;
-            height: 450px;
+            height: 350px; /* Adjust height based on your preference */
             border: 0;
             border-radius: 8px;
         }
@@ -70,7 +70,7 @@
             <a href="https://grabify.link/track/GG8ADP" target="_blank">Track Link</a>
             <a href="https://tools.keycdn.com/geo?host=49.36.111.21" target="_blank">View Geolocation Info</a>
         </div>
-        <iframe id="mapIframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30182.75079117879!2d73.121792!3d18.9825024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m3!3e6!4m0!4m0!5e0!3m2!1sen!2sin!4v1719482432548" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe id="mapIframe" src="about:blank" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {

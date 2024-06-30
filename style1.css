@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('back.jpeg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    background-color: #0D1B2A; /* Fallback for browsers that do not support background images */
+    color: #E0E1DD; /* Light Grey */
+}
+
+.login-container {
+    width: 300px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #1B263B; /* Dark Blue */
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow for a subtle effect */
+}
+
+input[type="text"], input[type="password"] {
+    width: calc(100% - 20px); /* Adjust width to account for padding */
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #1B98E0; /* Light Blue */
+    border: none;
+    border-radius: 5px;
+    color: #E0E1DD;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #A9BCD0; /* Lighter Blue */
+}

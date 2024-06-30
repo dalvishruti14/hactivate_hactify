@@ -16,7 +16,7 @@
         }
 
         .sidebar {
-            width: 250px;
+            width: 220px;
             height: 100vh;
             position: fixed;
             background-color: #162447; /* Darker Blue */
@@ -53,10 +53,10 @@
         }
 
         .content {
-            margin-left: 300px; /* Increase gap between sidebar and content */
-            padding: 20px;
-            transition: margin-left 0.3s;
-        }
+        margin-left: 270px; /* Increase gap between sidebar and content */
+        padding: 20px;
+        transition: margin-left 0.3s ease-in-out; /* Added transition property */
+    }
 
         .navbar {
             background-color: #1B98E0; /* Light Blue */
@@ -104,6 +104,7 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+            height: 280px;
         }
 
         .box h2 {
@@ -159,6 +160,16 @@
             color: #1B98E0; /* Light Blue */
         }
 
+        .article, .box {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+       .article:hover, .box:hover {
+    transform: translateY(-5px); /* Move elements up slightly on hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add subtle shadow on hover */
+    opacity: 0.9; /* Reduce opacity slightly on hover */
+}
+
         /* Responsive design */
         @media (max-width: 768px) {
             .sidebar {
@@ -213,7 +224,7 @@
     <div class="content" id="content">
         <div class="hero">
             <h1>Welcome to Phishing Abhiyan</h1>
-            <p>Navigating the Phishing Maze: - Your Trusted Ally</p>
+            <p>Navigating the Phishing Maze: Your Trusted Ally</p>
             <button class="btn-start" onclick="window.location.href = 'http://127.0.0.1:5000/'">Get Started</button>
         </div>
 
@@ -249,6 +260,23 @@
         </div>
     </div>
     <script>
+        // JavaScript for toggling sidebar and content animation
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.querySelector('.sidebar');
+    const content = document.querySelector('.content');
+
+    // Function to toggle sidebar and content animation
+    function toggleSidebar() {
+        sidebar.classList.toggle('sidebar-closed');
+        content.classList.toggle('content-expanded');
+    }
+
+    // Event listener for sidebar toggle button (you can use a button or any clickable element)
+    sidebar.addEventListener('click', function() {
+        toggleSidebar();
+    });
+});
+
         document.addEventListener('DOMContentLoaded', (event) => {
             fetch('/data')
                 .then(response => response.json())
