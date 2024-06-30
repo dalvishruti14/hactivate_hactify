@@ -13,10 +13,19 @@ body {
     width: 300px;
     margin: 100px auto;
     padding: 20px;
-    background-color: #1B263B; /* Dark Blue */
+    background: rgba(27, 38, 59, 0.7); /* Dark Blue with transparency */
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow for a subtle effect */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+    backdrop-filter: blur(10px); /* Apply blur for glass effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    transition: background 0.3s, backdrop-filter 0.3s; /* Smooth transition for hover effect */
+}
+
+.login-container:hover {
+    background: rgba(27, 38, 59, 0.9); /* Slightly darker background on hover */
+    backdrop-filter: blur(15px); /* Increase blur on hover */
+    -webkit-backdrop-filter: blur(15px); /* For Safari */
 }
 
 input[type="text"], input[type="password"] {
