@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Data Charts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .chart-container {
+            width: 80%;
+            margin: 20px auto;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="chart-container">
+        <h2>Users per Day</h2>
+        <canvas id="barChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <h2>Distribution of Users by City</h2>
+        <canvas id="doughnutChart"></canvas>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            fetch('/data')
+                .then(response => response.json())
+                .then(data => {
+                    const barData = data.bar_data;
+                    const doughnutData = data.doughnut_data;
+
+                    // Bar Chart
+                    const barChartCtx = document.getElementById('barChart').getContext('2d');
+                    const barChartLabels = barData.map(item => item.date);
+                    const barChartValues = barData.map(item => item.count);
+                    new Chart(barChartCtx, {
+                        type: 'bar',
+                        data: {
+                            labels: barChartLabels,
+                            datasets: [{
+                                label: 'Number of Users',
+                                data: barChartValues,
+                                backgroundColor: ['Navy', 'blue', 'teal'],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+
+                    // Doughnut Chart
+                    const doughnutChartCtx = document.getElementById('doughnutChart').getContext('2d');
+                    const doughnutChartLabels = doughnutData.map(item => item.city);
+                    const doughnutChartValues = doughnutData.map(item => item.count);
+                    new Chart(doughnutChartCtx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: doughnutChartLabels,
+                            datasets: [{
+                                data: doughnutChartValues,
+                                backgroundColor: ['black', 'purple', 'orange'],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Distribution of Users by City'
+                                }
+                            }
+                        }
+                    });
+                });
+        });
+    </script>
+</body>
+</html>
