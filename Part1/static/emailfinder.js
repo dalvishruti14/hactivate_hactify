@@ -1,3 +1,5 @@
+// emailfinder.js
+
 document.getElementById('fetch-type').addEventListener('change', (event) => {
     const fetchType = event.target.value;
     if (fetchType === 'single') {
@@ -17,23 +19,49 @@ document.getElementById('fetch-emails').addEventListener('click', () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ fetch_type: 'single', domain, names })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
     .then(data => {
         document.getElementById('emails').innerText = data.emails.join('\n');
+    })
+    .catch(error => {
+        console.error('Error fetching emails:', error);
+        // Display error message to user if necessary
     });
 });
 
 document.getElementById('fetch-emails-bulk').addEventListener('click', () => {
-    const emailData = JSON.parse(document.getElementById('bulk-data').value);
+    const bulkData = document.getElementById('bulk-data').value.trim();
+    let emailData;
+    try {
+        emailData = JSON.parse(bulkData);
+    } catch (error) {
+        console.error('Invalid JSON format for bulk data:', error);
+        // Display error message to user if necessary
+        return;
+    }
     fetch('/fetch_emails', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ fetch_type: 'bulk', email_data: emailData })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
     .then(data => {
         const emails = data.valid_emails.flatMap(entry => entry.valid_emails);
         document.getElementById('emails').innerText = emails.join('\n');
+    })
+    .catch(error => {
+        console.error('Error fetching emails in bulk:', error);
+        // Display error message to user if necessary
     });
 });
 
@@ -44,9 +72,18 @@ document.getElementById('scrape-emails').addEventListener('click', () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ urls })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
     .then(data => {
         document.getElementById('emails').innerText = data.emails.join('\n');
+    })
+    .catch(error => {
+        console.error('Error scraping emails:', error);
+        // Display error message to user if necessary
     });
 });
 
@@ -55,12 +92,21 @@ document.getElementById('check-emails').addEventListener('click', () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
     .then(data => {
         document.getElementById('live-emails').innerText = data.live_emails.join('\n');
         document.getElementById('dead-emails').innerText = data.dead_emails.join('\n');
 
         renderCharts(data.live_emails, data.dead_emails);
+    })
+    .catch(error => {
+        console.error('Error checking emails:', error);
+        // Display error message to user if necessary
     });
 });
 

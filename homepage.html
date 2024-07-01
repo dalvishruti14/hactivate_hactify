@@ -4,24 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
-    <link rel="stylesheet" href="emailfinder.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #0D1B2A; /* Dark Blue */
-            color: #E0E1DD; /* Light Grey */
+            background-image: url('back.jpeg');
+            color: #333;
         }
 
         .sidebar {
             width: 220px;
             height: 100vh;
             position: fixed;
-            background-color: #162447; /* Darker Blue */
+            background-color: #162447;
             padding: 20px;
             transition: all 0.3s;
+        }
+
+        .sidebar.collapsed {
+            width: 60px;
         }
 
         .sidebar ul {
@@ -48,98 +51,149 @@
             font-size: 20px;
         }
 
+        .sidebar ul li a span {
+            display: inline;
+            transition: opacity 0.3s;
+        }
+
+        .sidebar.collapsed ul li a span {
+            opacity: 0;
+        }
+
         .sidebar ul li:hover {
-            background-color: #1B263B; /* Dark Blue */
+            background-color: #1B263B;
         }
 
         .content {
-        margin-left: 270px; /* Increase gap between sidebar and content */
-        padding: 20px;
-        transition: margin-left 0.3s ease-in-out; /* Added transition property */
-    }
-
-        .navbar {
-            background-color: #1B98E0; /* Light Blue */
-            padding: 10px;
-            text-align: center;
-            width: 100%;
+            margin-left: 270px;
+            padding: 20px;
+            transition: margin-left 0.3s ease-in-out;
         }
 
-        .navbar .btn {
-            background-color: #5BC0EB; /* Lighter Blue */
-            color: #E0E1DD;
-            border: none;
-            padding: 10px 20px;
-            margin: 5px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
+        .content.collapsed {
+            margin-left: 110px;
         }
 
-        .navbar .btn:hover {
-            background-color: #1B98E0; /* Light Blue */
-            transform: scale(1.05);
+        .hero {
+            position: relative; /* Ensure relative positioning for absolute elements */
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden; /* Ensure overflow hidden for any absolute positioned elements */
+        }
+
+        .hero:hover {
+            transform: scale(1.02); /* Example: Increase size on hover */
+            box-shadow: 0 0 15px rgba(0,0,0,0.2); /* Example: Change shadow on hover */
+        }
+
+        .hero img {
+            position: absolute;
+            top: 20px; /* Adjust top position as needed */
+            right: 24px; /* Adjust right position as needed */
+            max-width: 500px;
+            height: 216px; /* Adjust max width if necessary */
+            border-radius: 5px; /* Optional: Add border radius */
+            box-shadow: 0 0 10px rgba(0,0,0,0.2); /* Optional: Add box shadow */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .hero:hover img {
+            transform: scale(1.05); /* Example: Increase size on hover */
+            box-shadow: 0 0 15px rgba(0,0,0,0.3); /* Example: Change shadow on hover */
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #666;
         }
 
         .btn-start {
             background-color: #1B98E0;
-            color: #E0E1DD;
+            color: #fff;
             border: none;
-            padding: 15px 30px;
+            padding: 12px 24px;
             cursor: pointer;
-            border-radius: 8px;
-            font-size: 18px;
-            transition: background-color 0.3s, transform 0.3s;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
         }
 
         .btn-start:hover {
             background-color: #5BC0EB;
-            transform: scale(1.05);
-        }
-
-        .box {
-            background: #1B263B; /* Dark Blue */
-            color: #E0E1DD; /* Light Grey */
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            height: 280px;
-        }
-
-        .box h2 {
-            margin-top: 0;
-        }
-
-        .box .chart {
-            width: 100%;
-            height: 200px;
-            background: #263352; /* Darker Blue */
-            border-radius: 8px;
-            margin-top: 10px;
         }
 
         .main-content {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
         }
 
-        .charts {
-            flex: 1;
-            margin-right: 20px;
+        .chart-container {
+            width: calc(46.5% - 10px); /* Adjust width to fit two charts with some spacing */
+            background-color: rgba(255, 255, 255, 1.0);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .chart-container:hover {
+            transform: translateY(-5px); /* Example: Move up on hover */
+            box-shadow: 0 0 15px rgba(0,0,0,0.2); /* Example: Change shadow on hover */
         }
 
         .articles {
-            width: 48%; /* Adjust width for articles */
+            width: 100%;
+            background-color: #F8F9FA; /* Light gray background */
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .articles:hover {
+            box-shadow: 0 0 15px rgba(0,0,0,0.2); /* Example: Change shadow on hover */
+        }
+
+        .articles h2 {
+            margin-top: 0;
+            cursor: pointer;
+        }
+
+        .articles h2:after {
+            content: '\25BC';
+            float: right;
+            transition: transform 0.3s;
+        }
+
+        .articles.collapsed h2:after {
+            transform: rotate(-90deg);
         }
 
         .article {
-            background: #1B263B; /* Dark Blue */
-            color: #E0E1DD; /* Light Grey */
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+            padding: 10px; /* Adjust padding for spacing between articles */
+            border-radius: 5px; /* Optional: Border radius for each article */
+            box-shadow: 0 0 5px rgba(0,0,0,0.1); /* Optional: Box shadow for each article */
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: #FFF; /* Default background color for articles */
+        }
+
+        .article:hover {
+            transform: translateY(-5px); /* Example: Move up on hover */
+            box-shadow: 0 0 15px rgba(0,0,0,0.2); /* Example: Change shadow on hover */
         }
 
         .article h3 {
@@ -151,26 +205,46 @@
         }
 
         .article a {
-            color: #5BC0EB; /* Lighter Blue */
+            color: #1B98E0;
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .article a:hover {
-            color: #1B98E0; /* Light Blue */
+            color: #5BC0EB;
         }
 
-        .article, .box {
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
+        .article-container {
+            max-height: 1000px; /* Adjust this value as needed */
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
 
-       .article:hover, .box:hover {
-    transform: translateY(-5px); /* Move elements up slightly on hover */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add subtle shadow on hover */
-    opacity: 0.9; /* Reduce opacity slightly on hover */
-}
+        .articles.collapsed .article-container {
+            max-height: 0;
+        }
 
-        /* Responsive design */
+        .toggle-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 20px;
+            left: 240px;
+            width: 30px;
+            height: 30px;
+            background-color: #1B98E0;
+            color: #E0E1DD;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: left 0.3s ease-in-out;
+        }
+
+        .sidebar.collapsed ~ .toggle-btn {
+            left: 50px;
+        }
+
         @media (max-width: 768px) {
             .sidebar {
                 width: 100%;
@@ -182,68 +256,48 @@
                 margin-left: 0;
             }
 
-            .main-content {
-                flex-direction: column;
-            }
-
-            .articles {
+            .chart-container {
                 width: 100%;
             }
-        }
-
-        /* Styling for the new sections */
-        .hero {
-            text-align: center;
-            margin-bottom: 30px;
-            width: 100%;
-        }
-
-        .hero h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 1.2em;
-            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <ul>
-            <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="dashboard.html" onclick="loadPage('dashboard.html')"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-            <li><a href="simulator.html" onclick="loadPage('simulator.html')"><i class="fas fa-cogs"></i> Simulator</a></li>
-            <li><a href="http://127.0.0.1:5000/" onclick="loadPage('emailfinder.html')"><i class="fas fa-envelope"></i> Email Finder</a></li>
-            <li><a href="your_activity.html" onclick="getGeolocationAndRedirect()"><i class="fas fa-history"></i> Your Activity</a></li>
-            <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
-            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="#"><i class="fas fa-home"></i><span>Home</span></a></li>
+            <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+            <li><a href="simulator.html"><i class="fas fa-cogs"></i><span>Simulator</span></a></li>
+            <li><a href="http://127.0.0.1:5000/"><i class="fas fa-envelope"></i><span>Email Finder</span></a></li>
+            <li><a href="your_activity.html"><i class="fas fa-history"></i><span>Your Activity</span></a></li>
+            <li><a href="#"><i class="fas fa-question-circle"></i><span>Help</span></a></li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
         </ul>
     </div>
+    <button class="toggle-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
     <div class="content" id="content">
         <div class="hero">
-            <h1>Welcome to Phishing Abhiyan</h1>
-            <p>Navigating the Phishing Maze: Your Trusted Ally</p>
-            <button class="btn-start" onclick="window.location.href = 'http://127.0.0.1:5000/'">Get Started</button>
+            <h1>PHISHING ABHIYAN</h1>
+            <p>Navigate the Phishing Maze: Your Trusted Ally</p>
+            <img src="abc.jpg" alt="Hero" style="width: 40%; border-radius: 10px;">
+            <button class="btn-start" onclick="window.location.href='http://127.0.0.1:5000/'">Get Started</button>
         </div>
 
         <div class="main-content">
-            <div class="charts">
-                <div class="box">
-                    <h2>Users Per Day</h2>
-                    <canvas id="barChart"></canvas>
-                </div>
-                <div class="box">
-                    <h2>Distribution of Users by City</h2>
-                    <canvas id="doughnutChart"></canvas>
-                </div>  
+            <div class="chart-container">
+                <h2>Users Per Day</h2>
+                <canvas id="barChart"></canvas>
             </div>
-
+            <div class="chart-container">
+                <h2>Distribution of Users</h2>
+                <canvas id="doughnutChart"></canvas>
+            </div>
             <div class="articles">
+                <h2 onclick="toggleArticles()">Our Articles</h2>
+                <div class="article-container">
                 <div class="article">
-                    <h3>What is Phishing?</h3>
-                    <p>Phishing is a type of online scam where criminals impersonate legitimate organizations via email, text message, advertisement or other means in order to steal sensitive information.</p>
+                    <h3>Understanding Phishing</h3>
+                    <p>Phishing is a type of online scam where attackers impersonate legitimate organizations via email, text message, advertisement or other means in order to steal sensitive information.</p>
                     <a href="https://www.forbes.com/sites/technology/article/what-is-phishing/" target="_blank">Read more</a>
                 </div>
                 <div class="article">
@@ -256,87 +310,86 @@
                     <p>Learn how to recognize phishing attacks and protect yourself from becoming a victim of these deceptive schemes.</p>
                     <a href="https://cofense.com/knowledge-center/how-to-spot-phishing/" target="_blank">Read more</a>
                 </div>
+                </div>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // JavaScript for toggling sidebar and content animation
-document.addEventListener('DOMContentLoaded', function() {
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const content = document.querySelector('.content');
+            const toggleBtn = document.querySelector('.toggle-btn');
 
-    // Function to toggle sidebar and content animation
-    function toggleSidebar() {
-        sidebar.classList.toggle('sidebar-closed');
-        content.classList.toggle('content-expanded');
-    }
+            sidebar.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
 
-    // Event listener for sidebar toggle button (you can use a button or any clickable element)
-    sidebar.addEventListener('click', function() {
-        toggleSidebar();
-    });
-});
+            if (sidebar.classList.contains('collapsed')) {
+                toggleBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            } else {
+                toggleBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            }
+        }
+
+        function toggleArticles() {
+            const articles = document.querySelector('.articles');
+            articles.classList.toggle('collapsed');
+        }
 
         document.addEventListener('DOMContentLoaded', (event) => {
-            fetch('/data')
-                .then(response => response.json())
-                .then(data => {
-                    const barData = data.bar_data;
-                    const doughnutData = data.doughnut_data;
-    
-                    // Bar Chart
-                    const barChartCtx = document.getElementById('barChart').getContext('2d');
-                    const barChartLabels = barData.map(item => item.date);
-                    const barChartValues = barData.map(item => item.count);
-                    new Chart(barChartCtx, {
-                        type: 'bar',
-                        data: {
-                            labels: barChartLabels,
-                            datasets: [{
-                                label: 'Number of Users',
-                                data: barChartValues,
-                                backgroundColor: ['Navy', 'blue', 'teal'],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
+            // Bar Chart
+            const barChartCtx = document.getElementById('barChart').getContext('2d');
+            new Chart(barChartCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['26 Jun', '27 Jun', '28 Jun', '29 Jun', '30 Jun', '1 July'],
+                    datasets: [{
+                        label: 'Number of Users',
+                        data: [3, 3, 2, 0, 2, 4],
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
                         }
-                    });
-    
-                    // Doughnut Chart
-                    const doughnutChartCtx = document.getElementById('doughnutChart').getContext('2d');
-                    const doughnutChartLabels = doughnutData.map(item => item.city);
-                    const doughnutChartValues = doughnutData.map(item => item.count);
-                    new Chart(doughnutChartCtx, {
-                        type: 'doughnut',
-                        data: {
-                            labels: doughnutChartLabels,
-                            datasets: [{
-                                data: doughnutChartValues,
-                                backgroundColor: ['black', 'purple', 'orange'],
-                                borderWidth: 1
-                            }]
+                    }
+                }
+            });
+
+            // Doughnut Chart
+            const doughnutChartCtx = document.getElementById('doughnutChart').getContext('2d');
+            new Chart(doughnutChartCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Thane', 'Navi Mumbai', 'Delhi'],
+                    datasets: [{
+                        label: 'User Distribution by City',
+                        data: [5, 6, 3],
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 205, 86)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
                         },
-                        options: {
-                            plugins: {
-                                legend: {
-                                    position: 'top',
-                                },
-                                title: {
-                                    display: true,
-                                    text: 'Distribution of Users by City'
-                                }
-                            }
+                        title: {
+                            display: true,
+                            text: 'User Distribution by City'
                         }
-                    });
-                });
+                    }
+                }
+            });
         });
     </script>
-    
 </body>
 </html>
